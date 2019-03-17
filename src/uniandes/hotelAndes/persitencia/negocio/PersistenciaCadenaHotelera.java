@@ -70,7 +70,7 @@ public class PersistenciaCadenaHotelera
 	private PersistenciaCadenaHotelera()
 	{
 		pmf = JDOHelper.getPersistenceManagerFactory("CadenaHotelera");
-		crearCalsesSQL();
+		crearClasesSQL();
 		
 		tablas = new LinkedList<String>();
 		tablas.add("CadenaHotelera_sequence");
@@ -96,7 +96,7 @@ public class PersistenciaCadenaHotelera
 	
 	private PersistenciaCadenaHotelera(JsonObject tableConfig)
 	{
-		crearCalsesSQL();
+		crearClasesSQL();
 		tablas = leerNombreTablas(tableConfig);
 		
 		String unidadPersistencia = tableConfig.get ("unidadPersistencia").getAsString ();
