@@ -1,5 +1,8 @@
 package uniandes.hotelAndes.persitencia.negocio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -15,10 +18,10 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 		this.pha = pha;
 	}
 	
-	public long adicionarCliente(PersistenceManager pm, Integer idBar, char pazySalvo, Integer idHotel) 
+	public long adicionarCliente(PersistenceManager pm, Integer idBar, char pazySalvo, Integer idHabitacion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pha.getSqlCliente()+ "(id, pazySalvo, idHotel) values (?, ?, ?)");
-        q.setParameters(idBar, pazySalvo, idHotel);
+        q.setParameters(idBar, pazySalvo, idHabitacion);
         return (long) q.executeUnique();
 	}
 	
@@ -29,6 +32,13 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 		q.setResultClass(Cliente.class);
 		q.setParameters(idUsuario);
 		return (Cliente) q.executeUnique();
+	}
+	
+	public ArrayList<Cliente> darClientes (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlCliente());
+		q.setResultClass(Cliente.class);
+		return (ArrayList<Cliente>) q.executeList();
 	}
 	
 }

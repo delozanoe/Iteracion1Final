@@ -1,9 +1,11 @@
 package uniandes.hotelAndes.persitencia.negocio;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
@@ -15,20 +17,29 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.hotelAndes.negocio.Cliente;
+import uniandes.hotelAndes.negocio.ConsumoHabitacion;
+import uniandes.hotelAndes.negocio.asociaciones.ConsumoHabitacionServicio;
+import uniandes.isis2304.parranderos.negocio.Bar;
+import uniandes.isis2304.parranderos.negocio.Bebedor;
+import uniandes.isis2304.parranderos.negocio.Sirven;
+import uniandes.isis2304.parranderos.negocio.TipoBebida;
+import uniandes.isis2304.parranderos.negocio.Visitan;
+
 
 
 
 
 public class PersistenciaCadenaHotelera 
 {
-	private static Logger log = Logger.getLogger(PersistenciaHotelAndes.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaCadenaHotelera.class.getName());
 
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
 	 */
 	public final static String SQL = "javax.jdo.query.SQL";
 	
-	private static PersistenciaHotelAndes instance;
+	private static PersistenciaCadenaHotelera instance;
 	
 	private PersistenceManagerFactory pmf;
 
@@ -70,7 +81,7 @@ public class PersistenciaCadenaHotelera
 	private PersistenciaCadenaHotelera()
 	{
 		pmf = JDOHelper.getPersistenceManagerFactory("CadenaHotelera");
-		crearCalsesSQL();
+		crearClasesSQL();
 		
 		tablas = new LinkedList<String>();
 		tablas.add("CadenaHotelera_sequence");
@@ -96,7 +107,7 @@ public class PersistenciaCadenaHotelera
 	
 	private PersistenciaCadenaHotelera(JsonObject tableConfig)
 	{
-		crearCalsesSQL();
+		crearClasesSQL();
 		tablas = leerNombreTablas(tableConfig);
 		
 		String unidadPersistencia = tableConfig.get ("unidadPersistencia").getAsString ();
@@ -258,41 +269,80 @@ public class PersistenciaCadenaHotelera
 
 	
 
-	private long nextval ()
-	{
-        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
-        log.trace ("Generando secuencia: " + resp);
-        return resp;
-    }
+//	private long nextval ()
+//	{
+//        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
+//        log.trace ("Generando secuencia: " + resp);
+//        return resp;
+//    }
+//	
+//	private String darDetalleException(Exception e) 
+//	{
+//		String resp = "";
+//		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+//		{
+//			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+//			return je.getNestedExceptions() [0].getMessage();
+//		}
+//		return resp;
+//	}
+//	
+//	public long [] limpiarCadenaHotelera()
+//	{
+//		PersistenceManager pm = pmf.getPersistenceManager();
+//        Transaction tx=pm.currentTransaction();
+//        try
+//        {
+//            tx.begin();
+//            long [] resp = sqlUtil.limpiarCadenaHotelera (pm);
+//            tx.commit ();
+//            log.info ("Borrada la base de datos");
+//            return resp;
+//        }
+//        catch (Exception e)
+//        {
+////        	e.printStackTrace();
+//        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+//        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+//        }
+//        finally
+//        {
+//            if (tx.isActive())
+//            {
+//                tx.rollback();
+//            }
+//            pm.close();
+//        }
+//		
+//	}
 	
-	private String darDetalleException(Exception e) 
-	{
-		String resp = "";
-		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
-		{
-			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
-			return je.getNestedExceptions() [0].getMessage();
-		}
-		return resp;
-	}
-	
-	public long [] limpiarCadenaHotelera()
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public Cliente adicionarCliente(char pazYSalvo, Integer idHabitacion, String tipoDocumento, Long numeroDocumento, String nombre, String correo)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long [] resp = sqlUtil.limpiarCadenaHotelera (pm);
-            tx.commit ();
-            log.info ("Borrada la base de datos");
-            return resp;
+            Integer id = nextVal();
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, id, pazYSalvo, idHabitacion);
+            long tuplasInsertadasUsu = sqlUsuario.adicionarUsuario(pm, id, tipoDocumento, numeroDocumento, nombre, correo);
+            tx.commit();
+            
+            log.trace ("Inserción de cliente: " + nombre + ": " + tuplasInsertadas + tuplasInsertadasUsu +" tuplas insertadas");
+            
+            return new Cliente (id, pazYSalvo, idHabitacion, tipoDocumento, numeroDocumento, nombre, correo);
         }
         catch (Exception e)
         {
 //        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+        	return null;
         }
         finally
         {
@@ -302,8 +352,84 @@ public class PersistenciaCadenaHotelera
             }
             pm.close();
         }
+	}
+	
+	public ArrayList<Cliente> darClientes ()
+	{
+		return sqlCliente.darClientes(pmf.getPersistenceManager());
+	}
+	
+	public Cliente darClientePorId (Integer idCliente)
+	{
+		return sqlCliente.darClientePorId (pmf.getPersistenceManager(), idCliente);
+	}
+ 
+	public ConsumoHabitacionServicio adicionarConsumoPorHabitacionServicio(Integer idConsumoHabitacion, Integer idServicio)
+	{
+			PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long tuplasInsertadas = sqlConsumoHabitacioServicio.adicionarConsumoPorHabitacionServicio(pm, idConsumoHabitacion, idServicio);
+	            tx.commit();
+
+	            log.trace ("Inserción de gustan: [" + idConsumoHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
+
+	            return new ConsumoHabitacionServicio(idConsumoHabitacion, idServicio);
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return null;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
 		
 	}
 	
+	
+	public ArrayList<ConsumoHabitacionServicio> darConsumoHabitacionServicio ()
+	{
+		return sqlConsumoHabitacioServicio.darConsumoHabitacionServicio(pmf.getPersistenceManager());
+	}
+	
+	public ConsumoHabitacion adicionarConsumoHabitacion(Double valorTotal, Integer idHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            Integer id = nextval ();
+            long tuplasInsertadas = sqlConsumoPorHabitacion.adicionarConsumoPorHabitacion(pmf.getPersistenceManager(), id, valorTotal, idHabitacion);
+            tx.commit();
+
+            log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new ConsumoHabitacion(valorTotal, idHabitacion, id);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 	
 }
