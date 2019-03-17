@@ -18,14 +18,7 @@ public class PlanConsumo
 	 * @ordered
 	 */
 	
-	private String tipoPlanConsumo;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+	
 	
 	private String descripcion;
 
@@ -47,10 +40,9 @@ public class PlanConsumo
 	
 	private ArrayList<Habitacion> habitacion;
 
-	public PlanConsumo(String tipoPlanConsumo, String descripcion, Hotel hotel, ArrayList<Habitacion> habitacion, Integer id) {
+	public PlanConsumo(String descripcion, Hotel hotel, ArrayList<Habitacion> habitacion, Integer id) {
 		super();
 		this.id = id;
-		this.tipoPlanConsumo = tipoPlanConsumo;
 		this.descripcion = descripcion;
 		this.hotel = hotel;
 		this.habitacion = habitacion;
@@ -66,16 +58,6 @@ public class PlanConsumo
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-
-
-	public String getTipoPlanConsumo() {
-		return tipoPlanConsumo;
-	}
-
-	public void setTipoPlanConsumo(String tipoPlanConsumo) {
-		this.tipoPlanConsumo = tipoPlanConsumo;
 	}
 
 	public String getDescripcion() {

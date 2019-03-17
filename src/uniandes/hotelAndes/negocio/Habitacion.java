@@ -29,7 +29,6 @@ public class Habitacion
 	 * @ordered
 	 */
 	
-	private Integer tipoDeHabitacion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,7 +46,7 @@ public class Habitacion
 	 * @ordered
 	 */
 	
-	private ArrayList<String> servicios;
+	private ArrayList<Servicio> servicios;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,14 +92,15 @@ public class Habitacion
 	 */
 	
 	private PlanConsumo planConsumo;
+	
+	private TipoHabitacion tipoHabitacion;
 
-	public Habitacion(int capacidad, Integer tipoDeHabitacion, double costoPorNoche, ArrayList<String> servicios,
+	public Habitacion(int capacidad, double costoPorNoche, ArrayList<Servicio> servicios,
 			double cuenta, Hotel hotel, ArrayList<Cliente> clientes, ConsumoHabitacion consumoHabitacion,
-			PlanConsumo planConsumo, Integer id) {
+			PlanConsumo planConsumo, Integer id, TipoHabitacion tipoHabitacion) {
 		super();
 		this.id = id;
 		this.capacidad = capacidad;
-		this.tipoDeHabitacion = tipoDeHabitacion;
 		this.costoPorNoche = costoPorNoche;
 		this.servicios = servicios;
 		this.cuenta = cuenta;
@@ -108,9 +108,22 @@ public class Habitacion
 		this.clientes = clientes;
 		this.consumoHabitacion = consumoHabitacion;
 		this.planConsumo = planConsumo;
+		this.tipoHabitacion = tipoHabitacion;
 	}
 	
 	
+
+	public TipoHabitacion getTipoHabitacion() {
+		return tipoHabitacion;
+	}
+
+
+
+	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -132,14 +145,6 @@ public class Habitacion
 		this.capacidad = capacidad;
 	}
 
-	public Integer getTipoDeHabitacion() {
-		return tipoDeHabitacion;
-	}
-
-	public void setTipoDeHabitacion(Integer tipoDeHabitacion) {
-		this.tipoDeHabitacion = tipoDeHabitacion;
-	}
-
 	public double getCostoPorNoche() {
 		return costoPorNoche;
 	}
@@ -148,11 +153,11 @@ public class Habitacion
 		this.costoPorNoche = costoPorNoche;
 	}
 
-	public ArrayList<String> getServicios() {
+	public ArrayList<Servicio> getServicios() {
 		return servicios;
 	}
 
-	public void setServicios(ArrayList<String> servicios) {
+	public void setServicios(ArrayList<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 
