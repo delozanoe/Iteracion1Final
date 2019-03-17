@@ -5,7 +5,15 @@ import java.util.List;
 
 import java.util.logging.Logger;
 
+import javax.jdo.JDODataStoreException;
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 
 
@@ -42,7 +50,7 @@ public class PersistenciaHotelAndes
 		
 	private SQLProductoConsumoPorHabitacion sqlProductoConsumoPorHabitacion;
 	
-	private SQLReserva sqlReserva; 
+	private SQLReservaServicio sqlReservaServicio; 
 	
 	private SQLReservaHabitacion sqlReservaHabitacion;
 	
