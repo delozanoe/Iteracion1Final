@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="resourse"/>
+	<classpathentry kind="src" path="resource"/>
 	<classpathentry kind="lib" path="lib/datanucleus-api-jdo-5.1.7.jar"/>
 	<classpathentry kind="lib" path="lib/datanucleus-core-5.1.10.jar"/>
 	<classpathentry kind="lib" path="lib/datanucleus-rdbms-5.1.10.jar"/>
@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc8.jar"/>
 	<classpathentry kind="lib" path="lib/transaction-api-1.1.jar"/>
+	<classpathentry kind="lib" path="resource/META-INF/persitence.xml"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

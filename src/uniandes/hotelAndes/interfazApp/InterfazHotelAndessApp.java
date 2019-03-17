@@ -37,7 +37,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -64,17 +64,17 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazHotelAndessApp.class.getName());
+//	private static Logger log = Logger.getLogger(InterfazHotelAndessApp.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de la interfaz
 	 */
-	private static final String CONFIG_INTERFAZ = ".resource/config/interfaceConfigApp.json"; 
+	private static final String CONFIG_INTERFAZ = "resource/config/interfaceConfigApp.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
 	 */
-	private static final String CONFIG_TABLAS = ".resource/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS = "resource/config/TablaBD_A.json"; 
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -118,7 +118,7 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
     {
         // Carga la configuración de la interfaz desde un archivo JSON
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
-        
+        System.out.println(guiConfig);
         // Configura la apariencia del frame que contiene la interfaz gráfica
         configurarFrame ( );
         if (guiConfig != null) 	   
@@ -127,6 +127,7 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
+        
         cadenaHotelera = new CadenaHotelera(tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
@@ -153,16 +154,18 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
 		try 
 		{
 			Gson gson = new Gson( );
-			FileReader file = new FileReader (archConfig);
+			FileReader file = new FileReader(archConfig);
+			System.out.println("nula");
 			JsonReader reader = new JsonReader ( file );
+			System.out.println("QUe uras");
 			config = gson.fromJson(reader, JsonObject.class);
-			log.info ("Se encontró un archivo de configuración válido: " + tipo);
+//			log.info ("Se encontró un archivo de configuración válido: " + tipo);
 		} 
 		catch (Exception e)
 		{
-//			e.printStackTrace ();
-			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace ();
+//			log.info ("NO se encontró un archivo de configuración válido");			
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Cadena hotelera App", JOptionPane.ERROR_MESSAGE);
 		}	
         return config;
     }
@@ -178,14 +181,14 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
     	
     	if ( guiConfig == null )
     	{
-    		log.info ( "Se aplica configuración por defecto" );			
+//    		log.info ( "Se aplica configuración por defecto" );			
 			titulo = "CadenaHotelera APP Default";
 			alto = 300;
 			ancho = 500;
     	}
     	else
     	{
-			log.info ( "Se aplica configuración indicada en el archivo de configuración" );
+//			log.info ( "Se aplica configuración indicada en el archivo de configuración" );
     		titulo = guiConfig.get("title").getAsString();
 			alto= guiConfig.get("frameH").getAsInt();
 			ancho = guiConfig.get("frameW").getAsInt();
