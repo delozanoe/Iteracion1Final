@@ -1,8 +1,11 @@
 package uniandes.hotelAndes.persitencia.negocio;
 
+import java.util.ArrayList;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.hotelAndes.negocio.ReservaServicio;
 import uniandes.hotelAndes.negocio.Servicio;
 
 
@@ -29,5 +32,12 @@ class SQLServicio
 		q.setResultClass(Servicio.class);
 		q.setParameters(id);
 		return (Servicio) q.executeUnique();
+	}
+	
+	public ArrayList<Servicio> darServicios(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlServicio());
+		q.setResultClass(Servicio.class);
+		return (ArrayList<Servicio>) q.executeList();
 	}
 }

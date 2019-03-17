@@ -26,7 +26,7 @@ public class SQLTipoServicio
 	}
 
 
-	public TipoServicio darTipoEmpleadoPorId (PersistenceManager pm, Integer id) 
+	public TipoServicio darTipoServicioPorId (PersistenceManager pm, Integer id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlTipoServicio () + " WHERE id = ?");
 		q.setResultClass(TipoServicio.class);

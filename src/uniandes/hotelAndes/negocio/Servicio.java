@@ -81,7 +81,7 @@ public class Servicio
 	 * @ordered
 	 */
 	
-	private Integer tipo;
+	private TipoServicio tipo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,7 +90,7 @@ public class Servicio
 	 * @ordered
 	 */
 	
-	private boolean costoIncluido;
+	private char costoIncluido;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public class Servicio
 	private ArrayList<Producto> comsumos;
 
 	public Servicio(Integer id, String nombre, String descripcion, String horaApertura, String horaCierre, double capacidad,
-			double costo, Integer tipo, boolean costoIncluido, ArrayList<ReservaServicio> reservas, Hotel hotel,
+			double costo, TipoServicio tipo, char costoIncluido, ArrayList<ReservaServicio> reservas, Hotel hotel,
 			ArrayList<Producto> productos, ArrayList<Producto> comsumos) {
 		super();
 		this.id = id;
@@ -203,19 +203,19 @@ public class Servicio
 		this.costo = costo;
 	}
 
-	public Integer getTipo() {
+	public TipoServicio getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(TipoServicio tipo) {
 		this.tipo = tipo;
 	}
 
-	public boolean isCostoIncluido() {
+	public char isCostoIncluido() {
 		return costoIncluido;
 	}
 
-	public void setCostoIncluido(boolean costoIncluido) {
+	public void setCostoIncluido(char costoIncluido) {
 		this.costoIncluido = costoIncluido;
 	}
 

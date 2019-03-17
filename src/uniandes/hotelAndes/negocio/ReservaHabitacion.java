@@ -54,17 +54,17 @@ public class ReservaHabitacion
 	 * @ordered
 	 */
 	
-	private ArrayList<Cliente> clientes;
+	private Cliente cliente;
 
-	public ReservaHabitacion(String fechaEntrada, String fechaSalida, int numeroPersonas, Hotel hotel,
-			ArrayList<Cliente> clientes, Integer id) {
+	public ReservaHabitacion(String fechaEntrada, String fechaSalida, Integer numeroPersonas, Hotel hotel,
+			Cliente cliente, Integer id) {
 		super();
 		this.id= id;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.numeroPersonas = numeroPersonas;
 		this.hotel = hotel;
-		this.clientes = clientes;
+		this.cliente = cliente;
 	}
 
 	
@@ -110,12 +110,12 @@ public class ReservaHabitacion
 		this.hotel = hotel;
 	}
 
-	public ArrayList<Cliente> getClientes() {
-		return clientes;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(ArrayList<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	/**
