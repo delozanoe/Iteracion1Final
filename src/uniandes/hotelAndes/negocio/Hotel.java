@@ -175,6 +175,21 @@ public class Hotel
 	public void setPlanConsumo(ArrayList<PlanConsumo> planConsumo) {
 		this.planConsumo = planConsumo;
 	}
+	
+	public Habitacion getHabitacionPorId(Integer idHabitacion)
+	{
+		Habitacion habitacion = null;
+		
+		for(int i = 0; i < habitaciones.size();i++)
+		{
+			if(habitaciones.get(i).getId() == idHabitacion)
+			{
+				habitacion = habitaciones.get(i);
+			}
+		}
+		
+		return habitacion;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

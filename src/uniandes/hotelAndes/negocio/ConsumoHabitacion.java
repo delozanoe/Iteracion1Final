@@ -37,6 +37,8 @@ public class ConsumoHabitacion
 	 * @ordered
 	 */
 	
+	private Hotel hotel;
+	
 	private ArrayList<Servicio> servicios;
 
 	public ConsumoHabitacion(double valorTotal, Habitacion habitacion, ArrayList<Servicio> servicios, Integer id) {
@@ -45,6 +47,13 @@ public class ConsumoHabitacion
 		this.valorTotal = valorTotal;
 		this.habitacion = habitacion;
 		this.servicios = servicios;
+	}
+	
+	public ConsumoHabitacion(double valorTotal, Integer idHabitacion, Integer id)
+	{
+		this.id =id;
+		this.valorTotal = valorTotal;
+		this.habitacion = hotel.getHabitacionPorId(idHabitacion); 
 	}
 
 	
