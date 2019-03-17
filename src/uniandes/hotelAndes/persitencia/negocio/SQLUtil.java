@@ -3,8 +3,9 @@ package uniandes.hotelAndes.persitencia.negocio;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-class SQLUtil {
-private final static String SQL = PersistenciaCadenaHotelera.SQL;
+class SQLUtil 
+{
+	private final static String SQL = PersistenciaCadenaHotelera.SQL;
 	
 	private PersistenciaCadenaHotelera pha;
 	
@@ -13,23 +14,23 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 		this.pha = pha;
 	}
 	
-//	public long nextval (PersistenceManager pm)
-//	{
-//        Query q = pm.newQuery(SQL, "SELECT "+ pha.darSeqCadenaHotelera() + ".nextval FROM DUAL");
-//        q.setResultClass(Long.class);
-//        long resp = (long) q.executeUnique();
-//        return resp;
-//	}
-//
-//	/**
-//	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
-//	 * @param pm - El manejador de persistencia
-//	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
-//	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
-//	 */
-//	public long [] limpiarCadenaHotelera (PersistenceManager pm)
-//	{
-//		
+	public long nextval (PersistenceManager pm)
+	{
+        Query q = pm.newQuery(SQL, "SELECT "+ pha.darSeqCadenaHotelera() + ".nextval FROM DUAL");
+        q.setResultClass(Long.class);
+        long resp = (long) q.executeUnique();
+        return resp;
+	}
+
+	/**
+	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
+	 * @param pm - El manejador de persistencia
+	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
+	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
+	 */
+	public long [] limpiarCadenaHotelera (PersistenceManager pm)
+	{
+		return null;
 //		Query qConsumoHabitacionServicio = pm.newQuery(SQL, "DELETE FROM " + pha.getSqlConsumoHabitacioServicio ());
 //		Query qProductoConsumoPorHabitacion = pm.newQuery(SQL, "DELETE FROM " + pha.getSqlProductoConsumoPorHabitacion ());
 //		Query qServicioConsumo = pm.newQuery(SQL, "DELETE FROM " + pha.getSqlServicioConsumo());
@@ -46,5 +47,5 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 //        long baresEliminados = (long) qBar.executeUnique ();
 //        return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
 //        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
-//	}
+	}
 }

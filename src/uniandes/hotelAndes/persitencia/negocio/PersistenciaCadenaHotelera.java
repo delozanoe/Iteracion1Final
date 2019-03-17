@@ -272,45 +272,45 @@ public class PersistenciaCadenaHotelera
 //        return resp;
 //    }
 //	
-//	private String darDetalleException(Exception e) 
-//	{
-//		String resp = "";
-//		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
-//		{
-//			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
-//			return je.getNestedExceptions() [0].getMessage();
-//		}
-//		return resp;
-//	}
-//	
-//	public long [] limpiarCadenaHotelera()
-//	{
-//		PersistenceManager pm = pmf.getPersistenceManager();
-//        Transaction tx=pm.currentTransaction();
-//        try
-//        {
-//            tx.begin();
-//            long [] resp = sqlUtil.limpiarCadenaHotelera (pm);
-//            tx.commit ();
-//            log.info ("Borrada la base de datos");
-//            return resp;
-//        }
-//        catch (Exception e)
-//        {
-////        	e.printStackTrace();
-//        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-//        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
-//        }
-//        finally
-//        {
-//            if (tx.isActive())
-//            {
-//                tx.rollback();
-//            }
-//            pm.close();
-//        }
-//		
-//	}
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+	
+	public long [] limpiarCadenaHotelera()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long [] resp = sqlUtil.limpiarCadenaHotelera(pm);
+            tx.commit ();
+            log.info ("Borrada la base de datos");
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+		
+	}
 	
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida

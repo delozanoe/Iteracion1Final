@@ -1,0 +1,28 @@
+15:44:47,799 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+15:44:47,826 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar.
+15:44:47,845 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+15:44:47,854 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar.
+15:44:47,857 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+15:44:47,865 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar.
+15:44:47,882 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
+15:48:16,234 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+15:48:16,257 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar.
+15:48:16,275 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+15:48:16,284 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar.
+15:48:16,288 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+15:48:16,298 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar.
+15:48:16,304 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
+15:48:48,317 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+15:48:48,340 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar.
+15:48:48,360 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+15:48:48,370 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar.
+15:48:48,373 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+15:48:48,381 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar.
+15:48:48,388 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
+15:54:10,821 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+15:54:10,846 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar.
+15:54:10,864 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+15:54:10,873 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar.
+15:54:10,877 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+15:54:10,885 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar.
+15:54:10,891 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/lozan/Documents/GitHub/Iteracion1Final/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
