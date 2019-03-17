@@ -21,14 +21,14 @@ import com.google.gson.JsonObject;
 
 public class PersistenciaCadenaHotelera 
 {
-	private static Logger log = Logger.getLogger(PersistenciaHotelAndes.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaCadenaHotelera.class.getName());
 
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
 	 */
 	public final static String SQL = "javax.jdo.query.SQL";
 	
-	private static PersistenciaHotelAndes instance;
+	private static PersistenciaCadenaHotelera instance;
 	
 	private PersistenceManagerFactory pmf;
 
@@ -283,7 +283,7 @@ public class PersistenciaCadenaHotelera
         try
         {
             tx.begin();
-            long [] resp = sqlUtil.limpiarCadenaHotelera (pm);
+            long [] resp = sqlUtil.limpiarCadenaHotelera(pm);
             tx.commit ();
             log.info ("Borrada la base de datos");
             return resp;

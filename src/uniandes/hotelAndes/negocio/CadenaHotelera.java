@@ -4,7 +4,9 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
 
+import uniandes.hotelAndes.persitencia.negocio.PersistenciaCadenaHotelera;
 import uniandes.hotelAndes.persitencia.negocio.PersistenciaHotelAndes;
+import uniandes.isis2304.parranderos.negocio.Bebida;
 
 
 
@@ -13,11 +15,11 @@ public class CadenaHotelera
 {
 	private static Logger log = Logger.getLogger(CadenaHotelera.class.getName());
 	
-	private PersistenciaHotelAndes pha;
+	private PersistenciaCadenaHotelera pha;
 	
 	public CadenaHotelera()
 	{
-		pha = PersistenciaHotelAndes.getInstance ();
+		pha = PersistenciaCadenaHotelera.getInstance ();
 	}
 	
 	/**
@@ -26,7 +28,7 @@ public class CadenaHotelera
 	 */
 	public CadenaHotelera (JsonObject tableConfig)
 	{
-		pha = PersistenciaHotelAndes.getInstance (tableConfig);
+		pha = PersistenciaCadenaHotelera.getInstance (tableConfig);
 	}
 	
 	/**
@@ -36,6 +38,9 @@ public class CadenaHotelera
 	{
 		pha.cerrarUnidadPersistencia ();
 	}
+	/* ****************************************************************
+	 * 			Métodos para manejar los clientes
+	 *****************************************************************/
 	
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
@@ -45,7 +50,7 @@ public class CadenaHotelera
 	public long [] limpiarCadenaHotelera ()
 	{
         log.info ("Limpiando la BD de Parranderos");
-        long [] borrrados = pha.li();	
+        long [] borrrados = pha.limpiarCadenaHotelera();	
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrrados;
 	}

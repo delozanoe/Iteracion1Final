@@ -1,0 +1,92 @@
+﻿{
+	"title": "Aplicación transaccional de Parranderos Uniandes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Requerimientos funcionales, Registrar",
+		  "options":
+			[
+				{
+					"label": "7 Reserva",
+					"event": "hacerReserva"
+				},
+				{
+					"label": "8 Reserva Servicio",
+					"event": "hacerReservaServicio"
+				},
+				{
+					"label": "9 Registrar llegada cliente",
+					"event": "registrarLlegadaCliente"
+				},
+				{
+					"label": "10 consumo servicio",
+					"event": "consumoServicioPorCliente"
+				},
+				{
+					"label": "11 salida cliente"
+					"evente": "salidaCliente"
+				}
+			]
+		},
+		{ "menuTitle": "Requerimientos funcionales de consulta",
+		  "options":
+			[
+				{
+					"label": "C1 MOSTRAR EL DINERO RECOLECTADO POR SERVICIOS EN CADA HABITACIÓN DURANTE UN PERIODO DE
+TIEMPO Y EN EL AÑO CORRIDO ",
+					"event": "RFC1DineroServiciosPorPeriodo"
+				},
+				{
+					"label": "RFC2 - MOSTRAR LOS 20 SERVICIOS MÁS POPULARES",
+					"event": "RFC2ServiciosMasPopulares"
+				},
+				{
+					"label": "RFC3 - MOSTRAR EL ÍNDICE DE OCUPACIÓN DE CADA UNA DE LAS HABITACIONES DEL HOTEL",
+					"event": "RFC3OcupacionHabitaciones"
+				},
+				{
+					"label": "RFC4 - MOSTRAR LOS SERVICIOS QUE CUMPLEN CON CIERTA CARACTERÍSTICA",
+					"event": "RFC4ServiciosQueCumplen"
+				},
+				{
+					"label": "RFC5 - MOSTRAR EL CONSUMO EN HOTELANDES POR UN USUARIO DADO, EN UN RANGO DE FECHAS INDICADO",
+					"event": "RFC5ConsumoPorUsuarioPorFechas"
+				}
+			]
+		},		
+		{ "menuTitle": "Requerimientos NO funcionales",
+		  "options":
+			[
+				{
+					"label": "RNF1 Privacidad",
+					"event": "F1Privacidad"
+				},
+				{
+					"label": "RNF2 Peristencia",
+					"event": "F2Persitencia"
+				},
+				{
+					"label": "RNF3 Concurrencia",
+					"event": "F3Concurrencia"
+				},
+				{
+					"label": "RNF4 Distribución",
+					"event": "F4Distribución"
+				}
+			]
+		},		
+		{ "menuTitle": "Acerca de ...",
+		  "options":
+			[
+				{
+					"label": "Acerca de ...",
+					"event": "acercaDe"
+				}
+			]
+		}		
+		
+	]
+}
+	
