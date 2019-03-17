@@ -1,12 +1,12 @@
 package uniandes.hotelAndes.persitencia.negocio;
 
-class ServicioProducto 
+class SQLServicioProducto 
 {
 private final static String SQL = PersistenciaHotelAndes.SQL;
 	
 	private PersistenciaHotelAndes pha;
 	
-	public ServicioProducto(PersistenciaHotelAndes pha)
+	public SQLServicioProducto(PersistenciaHotelAndes pha)
 	{
 		this.pha = pha;
 	}
