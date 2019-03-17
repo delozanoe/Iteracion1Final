@@ -58,6 +58,8 @@ public class PersistenciaHotelAndes
 	
 	private SQLServicioConsumo sqlServicioConsumo;
 	
+	private SQLServicioProducto sqlServicioProducto;
+	
 	private SQLUsuario sqlUsuario;
 	
 	private SQLUtil sqlUtil;
@@ -83,6 +85,7 @@ public class PersistenciaHotelAndes
 		tablas.add("RESERVAHABITACION");
 		tablas.add("SERVICIO");
 		tablas.add("SERVICIOCONSUMO");
+		tablas.add("SERVICIOPRODUCTO");
 		tablas.add("USUARIO");
 		
 
@@ -155,6 +158,11 @@ public class PersistenciaHotelAndes
 		sqlProductoConsumoPorHabitacion = new SQLProductoConsumoPorHabitacion(this);
 		
 		sqlReservaHabitacion = new SQLReservaHabitacion(this); 
+		
+		sqlServicio = new SQLServicio(this);
+		sqlServicioConsumo = new SQLServicioConsumo(this);
+		sqlServicioProducto = new SQLServicioProducto(this);
+		
 		sqlUsuario = new SQLUsuario(this);
 		
 		sqlUtil = new SQLUtil(this);
@@ -220,13 +228,18 @@ public class PersistenciaHotelAndes
 	public String getSqlServicioConsumo() {
 		return tablas.get(12);
 	}
-
-	public String getSqlUsuario() {
+	
+	public String delSqlServicioProdcuto()
+	{
 		return tablas.get(13);
 	}
 
-	public String getSqlUtil() {
+	public String getSqlUsuario() {
 		return tablas.get(14);
+	}
+
+	public String getSqlUtil() {
+		return tablas.get(15);
 	}
 
 	
