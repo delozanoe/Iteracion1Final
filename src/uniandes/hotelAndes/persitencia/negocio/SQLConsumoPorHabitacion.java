@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.hotelAndes.negocio.Cliente;
 import uniandes.hotelAndes.negocio.ConsumoHabitacion;
 import uniandes.hotelAndes.negocio.asociaciones.ConsumoHabitacionServicio;
 
@@ -32,6 +33,13 @@ public class SQLConsumoPorHabitacion {
 		q.setResultClass(ConsumoHabitacion.class);
 		q.setParameters(id);
 		return (ConsumoHabitacion) q.executeUnique();
+	}
+	
+	public ArrayList<ConsumoHabitacion> darConsumosHabitacion (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlConsumoPorHabitacion());
+		q.setResultClass(ConsumoHabitacion.class);
+		return (ArrayList<ConsumoHabitacion>) q.executeList();
 	}
 	
 }

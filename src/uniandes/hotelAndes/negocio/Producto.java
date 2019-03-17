@@ -36,14 +36,6 @@ public class Producto
 	 * @ordered
 	 */
 	
-	private boolean cargadoAHabitacion;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	private Integer  id;
 
@@ -65,12 +57,11 @@ public class Producto
 	
 	private ArrayList<Servicio> serviciosConsumos;
 
-	public Producto(String nombre, double costo, boolean cargadoAHabitacion, Integer id,
+	public Producto(String nombre, Double costo,Integer id,
 			ArrayList<Servicio> serviciosProductos, ArrayList<Servicio> serviciosConsumos) {
 		super();
 		this.nombre = nombre;
 		this.costo = costo;
-		this.cargadoAHabitacion = cargadoAHabitacion;
 		this.id = id;
 		this.serviciosProductos = serviciosProductos;
 		this.serviciosConsumos = serviciosConsumos;
@@ -92,13 +83,6 @@ public class Producto
 		this.costo = costo;
 	}
 
-	public boolean isCargadoAHabitacion() {
-		return cargadoAHabitacion;
-	}
-
-	public void setCargadoAHabitacion(boolean cargadoAHabitacion) {
-		this.cargadoAHabitacion = cargadoAHabitacion;
-	}
 
 	public Integer getId() {
 		return id;

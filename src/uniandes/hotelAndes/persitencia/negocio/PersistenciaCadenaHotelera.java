@@ -19,7 +19,13 @@ import com.google.gson.JsonObject;
 
 import uniandes.hotelAndes.negocio.Cliente;
 import uniandes.hotelAndes.negocio.ConsumoHabitacion;
+import uniandes.hotelAndes.negocio.Empleado;
+import uniandes.hotelAndes.negocio.Habitacion;
+import uniandes.hotelAndes.negocio.Hotel;
+import uniandes.hotelAndes.negocio.PlanConsumo;
+import uniandes.hotelAndes.negocio.Producto;
 import uniandes.hotelAndes.negocio.asociaciones.ConsumoHabitacionServicio;
+import uniandes.isis2304.parranderos.negocio.Bebida;
 
 
 
@@ -73,6 +79,12 @@ public class PersistenciaCadenaHotelera
 	
 	private SQLConsumoHabitacioServicio sqlConsumoHabitacioServicio;
 	
+	private SQLTipoEmpleado sqlTipoEmpleado;
+	
+	private SQLTipoServicio sqlTipoServicio;
+	
+	private SQLTipoHabitacion sqlTipoHabitacion;
+	
 	
 	private PersistenciaCadenaHotelera()
 	{
@@ -96,7 +108,9 @@ public class PersistenciaCadenaHotelera
 		tablas.add("SERVICIOPRODUCTO");
 		tablas.add("USUARIO");
 		tablas.add("CONSUMOHABITACIOSERVICIO");
-		
+		tablas.add("TIPOEMPLEADO");
+		tablas.add("TIPOSERVICIO");
+		tablas.add("TIPOHABITACION");
 
 		
 	}
@@ -177,6 +191,10 @@ public class PersistenciaCadenaHotelera
 		
 		sqlUtil = new SQLUtil(this);
 		sqlConsumoHabitacioServicio = new SQLConsumoHabitacioServicio(this);
+		
+		sqlTipoEmpleado = new SQLTipoEmpleado(this);
+		sqlTipoHabitacion = new SQLTipoHabitacion(this);
+		sqlTipoServicio = new SQLTipoServicio(this);
 	}
 
 
@@ -262,7 +280,22 @@ public class PersistenciaCadenaHotelera
 	{
 		return tablas.get(16);
 	}
+	
+	public String getSqlTipoEmpleado()
+	{
+		return tablas.get(17);
+	}
 
+	
+	public String getSqlTipoServicio()
+	{
+		return tablas.get(18);
+	}
+	
+	public String getSqlTipoHabitacion()
+	{
+		return tablas.get(19);
+	}
 	
 
 //	private long nextval ()
@@ -332,7 +365,7 @@ public class PersistenciaCadenaHotelera
             
             log.trace ("Inserción de cliente: " + nombre + ": " + tuplasInsertadas + tuplasInsertadasUsu +" tuplas insertadas");
             
-            return new Cliente (id, pazYSalvo, idHabitacion, tipoDocumento, numeroDocumento, nombre, correo);
+            return new Cliente (id, pazYSalvo,null, sqlHabitacion.darHabitacionPorId(pm, idHabitacion),null,  null, nombre, tipoDocumento, numeroDocumento, correo);
         }
         catch (Exception e)
         {
@@ -411,7 +444,7 @@ public class PersistenciaCadenaHotelera
 
             log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new ConsumoHabitacion(valorTotal, idHabitacion, id);
+            return new ConsumoHabitacion(valorTotal, sqlHabitacion.darHabitacionPorId(pm, idHabitacion),null, id);
         }
         catch (Exception e)
         {
@@ -428,5 +461,227 @@ public class PersistenciaCadenaHotelera
             pm.close();
         }
 	}
+	
+	public ArrayList<ConsumoHabitacion> darConsumosHabitacion ()
+	{
+		return sqlConsumoPorHabitacion.darConsumosHabitacion(pmf.getPersistenceManager());
+	}
+	
+	public ConsumoHabitacion darConsumoHabitacionPorId (Integer idConsumoPorHabitacion)
+	{
+		return sqlConsumoPorHabitacion.darConsumoHabitacionPorId(pmf.getPersistenceManager(), idConsumoPorHabitacion);
+	}
+	
+	public Empleado adicionarEmpleado(Integer idHotel, Integer idTipoEmpleado, String tipoDocumento, Long numeroDocumento, String nombre, String correo) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();            
+            Integer id = nextVal();
+            long tuplasInsertadas = sqlEmpleado.adicionarEmpleado(pm, id, idHotel, idTipoEmpleado);
+            long tuplasInsertadasUsu = sqlUsuario.adicionarUsuario(pm, id, tipoDocumento, numeroDocumento, nombre, correo);
+            tx.commit();
+            
+            log.trace ("Inserción bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            return new Empleado(sqlTipoEmpleado.darTipoEmpleadoPorId(pm, idTipoEmpleado), sqlHotel.darHotelPorId(pm, idHotel), nombre, tipoDocumento, numeroDocumento, correo, id);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ArrayList<Empleado> darEmpleados ()
+	{
+		return sqlEmpleado.darEmpleados(pmf.getPersistenceManager());
+	}
+	
+	public Empleado darEmpleadoPorId (Integer idEmpleado)
+	{
+		return sqlEmpleado.darEmpleadoPorId (pmf.getPersistenceManager(), idEmpleado);
+	}
+	
+	public Habitacion adicionarHabitacion(Integer idHotel, Integer capacidad, Double costoPorNoche, Double cuenta, String numero, Integer idPlanConsumo, Integer idConsumoHabitacion, Integer idTipoHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+
+            Integer id = nextval ();
+            long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, id, capacidad, costoPorNoche, cuenta, numero, idHotel, idConsumoHabitacion, idTipoHabitacion, idPlanConsumo);
+            tx.commit();
+
+            log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Habitacion(capacidad, costoPorNoche, null, cuenta, sqlHotel.darHotelPorId(pm, idHotel), null, sqlConsumoPorHabitacion.darConsumoHabitacionPorId(pm, idConsumoHabitacion), sqlPlanConsumo.darPlanConsumoPorId(pm, idPlanConsumo), id, sqlTipoHabitacion.darTipoHabitacionPorId(pm, idTipoHabitacion));
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ArrayList<Habitacion> darHabitaciones ()
+	{
+		return sqlHabitacion.darHabitaciones(pmf.getPersistenceManager());
+	}
+	
+	public Habitacion darHabitacionPorId (Integer idHabitacion)
+	{
+		return sqlHabitacion.darHabitacionPorId(pmf.getPersistenceManager(), idHabitacion);
+	}
+	
+	public Hotel adicionarHotel(String ciudad, String pais, Integer ofertaHabitacional) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+
+            Integer id = nextval ();
+            long tuplasInsertadas = sqlHotel.adicionarHotel(pm, id, pais, ciudad, ofertaHabitacional);
+            tx.commit();
+
+            log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Hotel(id, pais, ciudad, ofertaHabitacional, null, null, null, null, null, null);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ArrayList<Hotel> darHoteles()
+	{
+		return sqlHotel.darHoteles(pmf.getPersistenceManager());
+	}
+	
+	public Hotel darHotelPorId (Integer idHotel)
+	{
+		return sqlHotel.darHotelPorId(pmf.getPersistenceManager(), idHotel);
+	}
+	
+	public PlanConsumo adicionarPlanConsumo(Integer idHotel, String descripcion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+
+            Integer id = nextval ();
+            long tuplasInsertadas = sqlPlanConsumo.adicionarPlanConsumo(pm, id, idHotel, descripcion);
+            tx.commit();
+
+            log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new PlanConsumo(descripcion, sqlHotel.darHotelPorId(pm, idHotel), null, id);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ArrayList<PlanConsumo> darPlanesConsumo()
+	{
+		return sqlPlanConsumo.darPlanesConsumo(pmf.getPersistenceManager());
+	}
+	
+	public PlanConsumo darPlanConsumoPorId (Integer idPlanConsumo)
+	{
+		return sqlPlanConsumo.darPlanConsumoPorId(pmf.getPersistenceManager(), idPlanConsumo);
+	}
+	
+	public Producto adicionarProducto(String nombre, Double costo) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+
+            Integer id = nextval ();
+            long tuplasInsertadas = sqlProducto.adicionarProducto(pm, id, nombre, costo);
+            tx.commit();
+
+            log.trace ("Inserción de consumo: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Producto(nombre, costo, id, null, null);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ArrayList<Producto> darProductos()
+	{
+		return sqlProducto.darProductos(pmf.getPersistenceManager());
+	}
+	
+	public Producto darProductoPorId (Integer idProducto)
+	{
+		return sqlProducto.darProductoPorId(pmf.getPersistenceManager(), idProducto);
+	}
+	
+	
+	
 	
 }

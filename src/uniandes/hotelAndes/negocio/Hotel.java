@@ -63,7 +63,7 @@ public class Hotel
 	 * @ordered
 	 */
 	
-	private ArrayList<Empleado> empleado;
+	private ArrayList<Empleado> empleados;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,11 +81,13 @@ public class Hotel
 	 * @ordered
 	 */
 	
-	private ArrayList<PlanConsumo> planConsumo;
+	private ArrayList<PlanConsumo> planesConsumo;
+	
+	private ArrayList<TipoEmpleado> tiposEmpleados;
 
-	public Hotel(String pais, String ciudad, int ofertaHabitacional, ArrayList<Habitacion> habitaciones,
+	public Hotel(Integer id, String pais, String ciudad, int ofertaHabitacional, ArrayList<Habitacion> habitaciones,
 			ArrayList<ReservaHabitacion> reservas, ArrayList<Empleado> empleado, ArrayList<Servicio> servicios,
-			ArrayList<PlanConsumo> planConsumo, Integer id) {
+			ArrayList<PlanConsumo> planesConsumo, ArrayList<TipoEmpleado> tiposEmpleados) {
 		super();
 		this.id= id;
 		this.pais = pais;
@@ -93,12 +95,49 @@ public class Hotel
 		this.ofertaHabitacional = ofertaHabitacional;
 		this.habitaciones = habitaciones;
 		this.reservas = reservas;
-		this.empleado = empleado;
+		this.empleados = empleado;
 		this.servicios = servicios;
-		this.planConsumo = planConsumo;
+		this.planesConsumo = planesConsumo;
+		this.tiposEmpleados = tiposEmpleados;
 	}
 	
 	
+
+	public ArrayList<Empleado> getEmpleados() {
+		return empleados;
+	}
+
+
+
+	public void setEmpleados(ArrayList<Empleado> empleados) {
+		this.empleados = empleados;
+	}
+
+
+
+	public ArrayList<PlanConsumo> getPlanesConsumo() {
+		return planesConsumo;
+	}
+
+
+
+	public void setPlanesConsumo(ArrayList<PlanConsumo> planesConsumo) {
+		this.planesConsumo = planesConsumo;
+	}
+
+
+
+	public ArrayList<TipoEmpleado> getTiposEmpleados() {
+		return tiposEmpleados;
+	}
+
+
+
+	public void setTiposEmpleados(ArrayList<TipoEmpleado> tiposEmpleados) {
+		this.tiposEmpleados = tiposEmpleados;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -153,11 +192,11 @@ public class Hotel
 	}
 
 	public ArrayList<Empleado> getEmpleado() {
-		return empleado;
+		return empleados;
 	}
 
 	public void setEmpleado(ArrayList<Empleado> empleado) {
-		this.empleado = empleado;
+		this.empleados = empleado;
 	}
 
 	public ArrayList<Servicio> getServicios() {
@@ -169,27 +208,14 @@ public class Hotel
 	}
 
 	public ArrayList<PlanConsumo> getPlanConsumo() {
-		return planConsumo;
+		return planesConsumo;
 	}
 
 	public void setPlanConsumo(ArrayList<PlanConsumo> planConsumo) {
-		this.planConsumo = planConsumo;
+		this.planesConsumo = planConsumo;
 	}
 	
-	public Habitacion getHabitacionPorId(Integer idHabitacion)
-	{
-		Habitacion habitacion = null;
-		
-		for(int i = 0; i < habitaciones.size();i++)
-		{
-			if(habitaciones.get(i).getId() == idHabitacion)
-			{
-				habitacion = habitaciones.get(i);
-			}
-		}
-		
-		return habitacion;
-	}
+	
 
 	/**
 	 * <!-- begin-user-doc -->

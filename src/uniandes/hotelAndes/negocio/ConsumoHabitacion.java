@@ -49,14 +49,6 @@ public class ConsumoHabitacion
 		this.servicios = servicios;
 	}
 	
-	public ConsumoHabitacion(double valorTotal, Integer idHabitacion, Integer id)
-	{
-		this.id =id;
-		this.valorTotal = valorTotal;
-		this.habitacion = hotel.getHabitacionPorId(idHabitacion); 
-	}
-
-	
 	public Integer getId() {
 		return id;
 	}

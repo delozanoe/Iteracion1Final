@@ -56,7 +56,6 @@ public class Cliente extends Usuario
 	
 	private ArrayList<ReservaHabitacion> reserva;
 	
-	private Hotel hotel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,8 +66,8 @@ public class Cliente extends Usuario
 	
 	private ArrayList<ReservaServicio> reservas;
 
-	public Cliente( char pazYSalvo, ArrayList<String> planConsumo, Habitacion habitacion,
-			ArrayList<ReservaHabitacion> reserva, ArrayList<ReservaServicio> reservas, String nombre, String tipoDocumento, long numeroDocumento, String correo, Integer id) {
+	public Cliente( Integer id, char pazYSalvo, ArrayList<String> planConsumo, Habitacion habitacion,
+			ArrayList<ReservaHabitacion> reserva, ArrayList<ReservaServicio> reservas, String nombre, String tipoDocumento, long numeroDocumento, String correo) {
 		
 		super(nombre, nombre, numeroDocumento, nombre, id);
 		this.id = id;
@@ -78,14 +77,6 @@ public class Cliente extends Usuario
 		this.habitacion = habitacion;
 		this.reserva = reserva;
 		this.reservas = reservas;
-	}
-	
-	public Cliente (Integer id, char pazYSalvo, Integer idHabitacion,String tipoDocumento, long numeroDocumento ,String nombre, String correo)
-	{
-		super(nombre, nombre, numeroDocumento, nombre, id);
-		this.id = id;
-		this.pazYSalvo = pazYSalvo;
-		this.habitacion = hotel.getHabitacionPorId(idHabitacion);
 	}
 
 	
