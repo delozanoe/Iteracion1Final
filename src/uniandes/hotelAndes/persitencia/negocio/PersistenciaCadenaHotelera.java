@@ -298,13 +298,13 @@ public class PersistenciaCadenaHotelera
 	}
 	
 
-//	private long nextval ()
-//	{
-//        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
-//        log.trace ("Generando secuencia: " + resp);
-//        return resp;
-//    }
-//	
+	private long nextval ()
+	{
+        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
+        log.trace ("Generando secuencia: " + resp);
+        return resp;
+    }
+	
 	private String darDetalleException(Exception e) 
 	{
 		String resp = "";
@@ -438,7 +438,7 @@ public class PersistenciaCadenaHotelera
         {
             tx.begin();
 
-            Integer id = nextval ();
+            Integer id = nextval();
             long tuplasInsertadas = sqlConsumoPorHabitacion.adicionarConsumoPorHabitacion(pmf.getPersistenceManager(), id, valorTotal, idHabitacion);
             tx.commit();
 
@@ -521,7 +521,7 @@ public class PersistenciaCadenaHotelera
         {
             tx.begin();
 
-            Integer id = nextval ();
+            Integer id = nextval();
             long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, id, capacidad, costoPorNoche, cuenta, numero, idHotel, idConsumoHabitacion, idTipoHabitacion, idPlanConsumo);
             tx.commit();
 
