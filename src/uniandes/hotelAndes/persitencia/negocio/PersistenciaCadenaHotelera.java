@@ -20,11 +20,7 @@ import com.google.gson.JsonObject;
 import uniandes.hotelAndes.negocio.Cliente;
 import uniandes.hotelAndes.negocio.ConsumoHabitacion;
 import uniandes.hotelAndes.negocio.asociaciones.ConsumoHabitacionServicio;
-import uniandes.isis2304.parranderos.negocio.Bar;
-import uniandes.isis2304.parranderos.negocio.Bebedor;
-import uniandes.isis2304.parranderos.negocio.Sirven;
-import uniandes.isis2304.parranderos.negocio.TipoBebida;
-import uniandes.isis2304.parranderos.negocio.Visitan;
+
 
 
 
@@ -408,6 +404,7 @@ public class PersistenciaCadenaHotelera
         try
         {
             tx.begin();
+
             Integer id = nextval ();
             long tuplasInsertadas = sqlConsumoPorHabitacion.adicionarConsumoPorHabitacion(pmf.getPersistenceManager(), id, valorTotal, idHabitacion);
             tx.commit();
