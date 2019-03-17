@@ -5,10 +5,6 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
 import uniandes.hotelAndes.persitencia.negocio.PersistenciaCadenaHotelera;
-import uniandes.hotelAndes.persitencia.negocio.PersistenciaHotelAndes;
-import uniandes.isis2304.parranderos.negocio.Bebida;
-
-
 
 
 public class CadenaHotelera 
