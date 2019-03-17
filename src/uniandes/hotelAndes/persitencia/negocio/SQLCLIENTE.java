@@ -3,12 +3,14 @@ package uniandes.hotelAndes.persitencia.negocio;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.hotelAndes.negocio.Cliente;
+
 class SQLCLIENTE {
-private final static String SQL = PersistenciaHotelAndes.SQL;
+private final static String SQL = PersistenciaCadenaHotelera.SQL;
 	
-	private PersistenciaHotelAndes pha;
+	private PersistenciaCadenaHotelera pha;
 	
-	public SQLCLIENTE(PersistenciaHotelAndes pha)
+	public SQLCLIENTE(PersistenciaCadenaHotelera pha)
 	{
 		this.pha = pha;
 	}
@@ -20,5 +22,13 @@ private final static String SQL = PersistenciaHotelAndes.SQL;
         return (long) q.executeUnique();
 	}
 	
+	
+	public Cliente darClientePorId (PersistenceManager pm, Integer idUsuario) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlCliente () + " WHERE id = ?");
+		q.setResultClass(Cliente.class);
+		q.setParameters(idUsuario);
+		return (Cliente) q.executeUnique();
+	}
 	
 }

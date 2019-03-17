@@ -7,11 +7,11 @@ import uniandes.hotelAndes.negocio.Empleado;
 
 
 class SQLEmpleado {
-private final static String SQL = PersistenciaHotelAndes.SQL;
+private final static String SQL = PersistenciaCadenaHotelera.SQL;
 	
-	private PersistenciaHotelAndes pha;
+	private PersistenciaCadenaHotelera pha;
 	
-	public SQLEmpleado(PersistenciaHotelAndes pha)
+	public SQLEmpleado(PersistenciaCadenaHotelera pha)
 	{
 		this.pha = pha;
 	}

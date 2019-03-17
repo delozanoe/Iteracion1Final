@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 
 
 
-public class PersistenciaHotelAndes 
+public class PersistenciaCadenaHotelera 
 {
 	private static Logger log = Logger.getLogger(PersistenciaHotelAndes.class.getName());
 
@@ -64,15 +64,16 @@ public class PersistenciaHotelAndes
 	
 	private SQLUtil sqlUtil;
 	
+	private SQLConsumoHabitacioServicio sqlConsumoHabitacioServicio;
 	
 	
-	private PersistenciaHotelAndes()
+	private PersistenciaCadenaHotelera()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("ISIS2304A211910");
+		pmf = JDOHelper.getPersistenceManagerFactory("CadenaHotelera");
 		crearCalsesSQL();
 		
 		tablas = new LinkedList<String>();
-		tablas.add("");
+		tablas.add("CadenaHotelera_sequence");
 		tablas.add("CLIENTE");
 		tablas.add("CONSUMOPORHABITACION");
 		tablas.add("EMPLEADO");
@@ -81,18 +82,19 @@ public class PersistenciaHotelAndes
 		tablas.add("PLANCONSUMO");
 		tablas.add("PRODUCTO");
 		tablas.add("PRODUCTOCONSUMOPORHABITACION");
-		tablas.add("RESERVA");
+		tablas.add("RESERVASERVICIO	");
 		tablas.add("RESERVAHABITACION");
 		tablas.add("SERVICIO");
 		tablas.add("SERVICIOCONSUMO");
 		tablas.add("SERVICIOPRODUCTO");
 		tablas.add("USUARIO");
+		tablas.add("CONSUMOHABITACIOSERVICIO");
 		
 
 		
 	}
 	
-	private PersistenciaHotelAndes(JsonObject tableConfig)
+	private PersistenciaCadenaHotelera(JsonObject tableConfig)
 	{
 		crearCalsesSQL();
 		tablas = leerNombreTablas(tableConfig);
@@ -103,20 +105,20 @@ public class PersistenciaHotelAndes
 
 	}
 	
-	public static PersistenciaHotelAndes getInstance()
+	public static PersistenciaCadenaHotelera getInstance()
 	{
 		if(instance == null)
 		{
-			instance = new PersistenciaHotelAndes();
+			instance = new PersistenciaCadenaHotelera();
 		}
 		return instance;
 	}
 	
-	public static PersistenciaHotelAndes getInstance (JsonObject tableConfig)
+	public static PersistenciaCadenaHotelera getInstance (JsonObject tableConfig)
 	{
 		if (instance == null)
 		{
-			instance = new PersistenciaHotelAndes (tableConfig);
+			instance = new PersistenciaCadenaHotelera (tableConfig);
 		}
 		return instance;
 	}
@@ -140,7 +142,7 @@ public class PersistenciaHotelAndes
 		return resp;
 	}
 	
-	private void crearCalsesSQL()
+	private void crearClasesSQL()
 	{
 		
 		
@@ -158,6 +160,7 @@ public class PersistenciaHotelAndes
 		sqlProductoConsumoPorHabitacion = new SQLProductoConsumoPorHabitacion(this);
 		
 		sqlReservaHabitacion = new SQLReservaHabitacion(this); 
+		sqlReservaServicio = new SQLReservaServicio(this);
 		
 		sqlServicio = new SQLServicio(this);
 		sqlServicioConsumo = new SQLServicioConsumo(this);
@@ -166,6 +169,7 @@ public class PersistenciaHotelAndes
 		sqlUsuario = new SQLUsuario(this);
 		
 		sqlUtil = new SQLUtil(this);
+		sqlConsumoHabitacioServicio = new SQLConsumoHabitacioServicio(this);
 	}
 
 
@@ -179,6 +183,11 @@ public class PersistenciaHotelAndes
 	
 	public PersistenceManagerFactory getPmf() {
 		return pmf;
+	}
+	
+	public String darSeqCadenaHotelera()
+	{
+		return tablas.get(0);
 	}
 
 	public String getSqlCliente() {
@@ -213,7 +222,7 @@ public class PersistenciaHotelAndes
 		return tablas.get(8);
 	}
 
-	public String getSqlReserva() {
+	public String getSqlReservaServicio() {
 		return tablas.get(9);
 	}
 
@@ -229,7 +238,7 @@ public class PersistenciaHotelAndes
 		return tablas.get(12);
 	}
 	
-	public String delSqlServicioProdcuto()
+	public String getSqlServicioProducto()
 	{
 		return tablas.get(13);
 	}
@@ -240,6 +249,11 @@ public class PersistenciaHotelAndes
 
 	public String getSqlUtil() {
 		return tablas.get(15);
+	}
+	
+	public String getSqlConsumoHabitacioServicio()
+	{
+		return tablas.get(16);
 	}
 
 	

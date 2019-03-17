@@ -3,12 +3,14 @@ package uniandes.hotelAndes.persitencia.negocio;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.hotelAndes.negocio.Habitacion;
+
 class SQLHabitacion {
-private final static String SQL = PersistenciaHotelAndes.SQL;
+private final static String SQL = PersistenciaCadenaHotelera.SQL;
 	
-	private PersistenciaHotelAndes pha;
+	private PersistenciaCadenaHotelera pha;
 	
-	public SQLHabitacion(PersistenciaHotelAndes pha)
+	public SQLHabitacion(PersistenciaCadenaHotelera pha)
 	{
 		this.pha = pha;
 	}
@@ -17,5 +19,13 @@ private final static String SQL = PersistenciaHotelAndes.SQL;
         Query q = pm.newQuery(SQL, "INSERT INTO " + pha.getSqlHabitacion()+ "(id, capacidad, costoPorNoche, cuenta, numero, idHotel, idConsumoPorHabitacion, idTipoHabitacion) values (?, ?, ?,?,?,?,?)");
         q.setParameters(id, capacidad, costoPorNoche, cuenta, numero, idHotel, idConsumoHabitacion, idTipoHabitacion);
         return (long) q.executeUnique();
+	}
+	
+	public Habitacion darHabitacionPorId (PersistenceManager pm, Integer id) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlHabitacion () + " WHERE id = ?");
+		q.setResultClass(Habitacion.class);
+		q.setParameters(id);
+		return (Habitacion) q.executeUnique();
 	}
 }
