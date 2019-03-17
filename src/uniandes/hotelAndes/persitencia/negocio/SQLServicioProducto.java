@@ -25,7 +25,7 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
         return (long) q.executeUnique();
 	}
 	
-	public ArrayList<ServicioProducto> darConsumoHabitacionServicio (PersistenceManager pm)
+	public ArrayList<ServicioProducto> darServicioProducto (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlServicioProducto ());
 		q.setResultClass(ServicioProducto.class);

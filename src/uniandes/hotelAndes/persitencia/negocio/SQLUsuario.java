@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.hotelAndes.negocio.Servicio;
 import uniandes.hotelAndes.negocio.Usuario;
 
 
@@ -32,5 +33,12 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 		q.setResultClass(Usuario.class);
 		q.setParameters(id);
 		return (Usuario) q.executeUnique();
+	}
+	
+	public ArrayList<Usuario> darUsuarios(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pha.getSqlUsuario());
+		q.setResultClass(Usuario.class);
+		return (ArrayList<Usuario>) q.executeList();
 	}
 }
