@@ -35,7 +35,6 @@ import uniandes.hotelAndes.negocio.asociaciones.ConsumoHabitacionServicio;
 import uniandes.hotelAndes.negocio.asociaciones.ProductoConsumoPorHabitacion;
 import uniandes.hotelAndes.negocio.asociaciones.ServicioConsumo;
 import uniandes.hotelAndes.negocio.asociaciones.ServicioProducto;
-import uniandes.isis2304.parranderos.negocio.Bebida;
 
 
 
@@ -308,9 +307,9 @@ public class PersistenciaCadenaHotelera
 	}
 	
 
-	private long nextval ()
+	private Integer nextval ()
 	{
-        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
+        Integer resp = sqlUtil.nextval (pmf.getPersistenceManager());
         log.trace ("Generando secuencia: " + resp);
         return resp;
     }
@@ -368,7 +367,7 @@ public class PersistenciaCadenaHotelera
         try
         {
             tx.begin();
-            Integer id = nextVal();
+            Integer id = this.nextval();
             long tuplasInsertadas = sqlCliente.adicionarCliente(pm, id, pazYSalvo, idHabitacion);
             long tuplasInsertadasUsu = sqlUsuario.adicionarUsuario(pm, id, tipoDocumento, numeroDocumento, nombre, correo);
             tx.commit();
@@ -489,7 +488,7 @@ public class PersistenciaCadenaHotelera
         try
         {
             tx.begin();            
-            Integer id = nextVal();
+            Integer id = this.nextval();
             long tuplasInsertadas = sqlEmpleado.adicionarEmpleado(pm, id, idHotel, idTipoEmpleado);
             long tuplasInsertadasUsu = sqlUsuario.adicionarUsuario(pm, id, tipoDocumento, numeroDocumento, nombre, correo);
             tx.commit();
@@ -931,7 +930,7 @@ public class PersistenciaCadenaHotelera
 		return sqlServicioProducto.darServicioProducto(pmf.getPersistenceManager());
 	}
 	
-	public TipoEmpleado adicionarTipoEmpleado(String nombre, Integer id) 
+	public TipoEmpleado adicionarTipoEmpleado(String nombre) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -974,7 +973,7 @@ public class PersistenciaCadenaHotelera
 	
 	}
 	
-	public TipoHabitacion adicionarTipoHabitacion(String nombre, Integer id) 
+	public TipoHabitacion adicionarTipoHabitacion(String nombre) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1018,7 +1017,7 @@ public class PersistenciaCadenaHotelera
 	}
 	
 	
-	public TipoServicio adicionarTipoServicio(String nombre, Integer id) 
+	public TipoServicio adicionarTipoServicio(String nombre) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1061,7 +1060,7 @@ public class PersistenciaCadenaHotelera
 	
 	}
 	
-	public Usuario adicionarUsuario(String nombre, Integer id, String tipoDocumento, Long numeroDocumento, String correo) 
+	public Usuario adicionarUsuario(String nombre, String tipoDocumento, Long numeroDocumento, String correo) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1069,7 +1068,7 @@ public class PersistenciaCadenaHotelera
         {
             tx.begin();
 
-            Integer id = nextval ();
+            Integer id = nextval();
             long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, id, tipoDocumento, numeroDocumento, nombre, correo);
             tx.commit();
 
