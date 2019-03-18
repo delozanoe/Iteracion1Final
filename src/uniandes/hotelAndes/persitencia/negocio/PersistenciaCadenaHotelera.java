@@ -1103,6 +1103,7 @@ public class PersistenciaCadenaHotelera
 	
 	}
 	
+
 	public void checkin(Integer idReserva, Integer idEmpleado, char pazYSalvo, String tipoDocumento, long numeroDocumento, String correo, String nombre)
 	{
 		ArrayList<ReservaHabitacion> reservasHab = darReservasHabitaciones();

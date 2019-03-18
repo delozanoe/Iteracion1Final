@@ -54,7 +54,7 @@ public class Cliente extends Usuario
 	 * @ordered
 	 */
 	
-	private ArrayList<ReservaHabitacion> reserva;
+	private ArrayList<ReservaHabitacion> reservaHabitacion;
 	
 
 	/**
@@ -75,7 +75,7 @@ public class Cliente extends Usuario
 		this.pazYSalvo = pazYSalvo;
 		this.planConsumo = planConsumo;
 		this.habitacion = habitacion;
-		this.reserva = reserva;
+		this.reservaHabitacion = reserva;
 		this.reservas = reservas;
 	}
 
@@ -130,11 +130,11 @@ public class Cliente extends Usuario
 	}
 
 	public ArrayList<ReservaHabitacion> getReserva() {
-		return reserva;
+		return reservaHabitacion;
 	}
 
 	public void setReserva(ArrayList<ReservaHabitacion> reserva) {
-		this.reserva = reserva;
+		this.reservaHabitacion = reserva;
 	}
 
 	public ArrayList<ReservaServicio> getReservas() {
