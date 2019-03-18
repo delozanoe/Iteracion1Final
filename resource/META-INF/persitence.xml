@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <persistence version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/persistence">
 <!-- Parranderos "unit" -->
 <persistence-unit name="CadenaHotelera">
@@ -14,7 +14,7 @@
 <property name="datanucleus.query.sql.allowAll" value="true"/>
 </properties>
 </persistence-unit>
-<!-- HotelAndesError "unit" DefiniciÃ³n de una base de datos que no existe, para verificar el comportamiento en caso de error o caida de la BD-->
+<!-- HotelAndesError "unit" Definición de una base de datos que no existe, para verificar el comportamiento en caso de error o caida de la BD-->
 <persistence-unit name="CadenaHoteleraErrorDS">
 <exclude-unlisted-classes/>
 <properties>
@@ -28,7 +28,7 @@
 <property name="datanucleus.query.sql.allowAll" value="true"/>
 </properties>
 </persistence-unit>
-<!-- ParranderosErrorUser "unit" DefiniciÃ³n de una base de datos que no existe, para verificar el comportamiento en caso de error en las credenciales del usuario -->
+<!-- ParranderosErrorUser "unit" Definición de una base de datos que no existe, para verificar el comportamiento en caso de error en las credenciales del usuario -->
 <persistence-unit name="CadenaHoteleraErrorUser">
 <exclude-unlisted-classes/>
 <properties>

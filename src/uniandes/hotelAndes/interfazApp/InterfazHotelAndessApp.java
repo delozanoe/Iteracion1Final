@@ -37,6 +37,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.Logger;
+
 //import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -64,7 +66,7 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-//	private static Logger log = Logger.getLogger(InterfazHotelAndessApp.class.getName());
+	private static Logger log = Logger.getLogger(InterfazHotelAndessApp.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de la interfaz
@@ -118,7 +120,7 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
     {
         // Carga la configuración de la interfaz desde un archivo JSON
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
-        System.out.println(guiConfig);
+        
         // Configura la apariencia del frame que contiene la interfaz gráfica
         configurarFrame ( );
         if (guiConfig != null) 	   
@@ -155,16 +157,15 @@ public class InterfazHotelAndessApp extends JFrame implements ActionListener
 		{
 			Gson gson = new Gson( );
 			FileReader file = new FileReader(archConfig);
-			System.out.println("nula");
+			
 			JsonReader reader = new JsonReader ( file );
-			System.out.println("QUe uras");
 			config = gson.fromJson(reader, JsonObject.class);
-//			log.info ("Se encontró un archivo de configuración válido: " + tipo);
+			log.info ("Se encontró un archivo de configuración válido: " + tipo);
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace ();
-//			log.info ("NO se encontró un archivo de configuración válido");			
+			log.info ("NO se encontró un archivo de configuración válido");			
 			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Cadena hotelera App", JOptionPane.ERROR_MESSAGE);
 		}	
         return config;
