@@ -57,7 +57,7 @@ public class ReservaHabitacion
 	private Cliente cliente;
 
 	public ReservaHabitacion(String fechaEntrada, String fechaSalida, Integer numeroPersonas, Hotel hotel,
-			Cliente cliente, Integer id) {
+			Cliente cliente, Integer id) throws Exception {
 		super();
 		this.id= id;
 		this.fechaEntrada = fechaEntrada;
@@ -65,6 +65,7 @@ public class ReservaHabitacion
 		this.numeroPersonas = numeroPersonas;
 		this.hotel = hotel;
 		this.cliente = cliente;
+		
 	}
 
 	

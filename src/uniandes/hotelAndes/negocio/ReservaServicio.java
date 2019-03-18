@@ -83,6 +83,8 @@ public class ReservaServicio
 		this.lugar = lugar;
 		this.cliente = cliente;
 		this.servicio = servicio;
+		
+		
 	}
 
 	public String getHoraInicio() {

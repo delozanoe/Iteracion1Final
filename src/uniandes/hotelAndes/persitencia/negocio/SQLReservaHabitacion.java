@@ -22,6 +22,8 @@ private final static String SQL = PersistenciaCadenaHotelera.SQL;
 	
 	public long adicionarReservaHabitacion(PersistenceManager pm, Integer id, String fechaEntrada, String fechaSalida, Integer numeroPersonas, Integer idHotel, Integer idCliente) 
 	{
+		
+		
         Query q = pm.newQuery(SQL, "INSERT INTO " + pha.getSqlReservaHabitacion()+ "(id, fechaEntrada, fechaSalida, numeroPersonas, idHotel, idCliente) values (?, ?, ?,?,?,?)");
         q.setParameters(id, fechaEntrada,fechaSalida,numeroPersonas, idHotel,idCliente);
         return (long) q.executeUnique();

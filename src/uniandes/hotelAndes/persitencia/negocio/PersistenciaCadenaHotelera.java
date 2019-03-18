@@ -1103,4 +1103,16 @@ public class PersistenciaCadenaHotelera
 	
 	}
 	
+	public ReservaHabitacion registrarReservaHabitacion(String fechaEntrada, String fechaSalida, Integer numeroPersonas,Integer idHotel,Integer idCliente)
+	{
+		ReservaHabitacion reserva = null;
+		
+		
+		
+		
+		return reserva;
+		
+		
+	}
+	
 }
