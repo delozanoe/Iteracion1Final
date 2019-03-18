@@ -99,7 +99,14 @@ public class Cliente extends Usuario
 	}
 
 	public char isPazYSalvo() {
-		return pazYSalvo;
+		if(habitacion.getCuenta() == 0)
+		{
+			return 'T';
+		}
+		else 
+		{
+			return 'F';
+		}
 	}
 
 	public void setPazYSalvo(char pazYSalvo) {

@@ -1145,4 +1145,53 @@ public class PersistenciaCadenaHotelera
 			adicionarCliente(pazYSalvo, idHabitacion, tipoDocumento, numeroDocumento, nombre, correo);
 		}
 	}
+	
+	public void registrarReservaAlojamineto(Integer idCliente)
+	{
+		for (int i = 0; i < darHabitaciones().size(); i++) 
+		{
+			Habitacion hab = darHabitaciones().get(i);
+			
+		}
+	}
+	
+	public void registrarReservaServicio(int idServicio, String horaInicio, String horaCierre, Integer duracion, String dia, String lugar, Integer idCliente)
+	{
+		int contador =0;
+		
+		for (int i = 0; i <darServicios().size(); i++) 
+		{
+			Servicio actual = darServicios().get(i);
+			if(actual.getTipo().getId() == idServicio)
+			{
+				contador++;
+			}
+					
+		}
+		if(darServicio(idServicio).getReservas().size() < contador)
+		{
+			if(darServicio(idServicio).getHoraApertura().equals(horaInicio) && darServicio(idServicio).getHoraCierre().equals(horaCierre))
+			{
+				adicionarReservaServicio(horaInicio, duracion, dia, lugar, idCliente, idServicio);
+			}	
+		}
+		
+//		for (int i = 0; i < reservs.size(); i++) 
+//		{
+//			ReservaServicio actual = reservs.get(i);
+//			if(actual.getServicio().getTipo().getId() == idServicio )
+//			{
+//				if()
+//			}
+//		}
+	}
+	
+	
+	public void checkOut(Integer idCliente)
+	{
+		if(darClientePorId(idCliente).isPazYSalvo() == 'T')
+		{
+			darClientePorId(idCliente).setHabitacion(null);
+		}
+	}
 }
