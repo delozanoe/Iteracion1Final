@@ -1103,4 +1103,46 @@ public class PersistenciaCadenaHotelera
 	
 	}
 	
+	public void checkin(Integer idReserva, Integer idEmpleado, char pazYSalvo, String tipoDocumento, long numeroDocumento, String correo, String nombre)
+	{
+		ArrayList<ReservaHabitacion> reservasHab = darReservasHabitaciones();
+		ArrayList<Empleado> empleados = darEmpleados();
+		Empleado empleadoActual = null;
+		boolean esRecep = false;
+		boolean hayReserva = false;
+		boolean habitacionesDisp = false;
+		
+		Integer idHabitacion = null;
+		for (int j = 0; j < empleados.size() && !esRecep; j++) 
+		{
+			empleadoActual = empleados.get(j);
+			if(empleadoActual.getTipo().getId() == 1)
+			{
+				esRecep = true;
+			}
+		}
+			
+		for (int i = 0; i < reservasHab.size() && !hayReserva; i++) 
+		{
+			ReservaHabitacion reservaHab = reservasHab.get(i);
+			if(reservaHab.getId() == idReserva)
+			{
+				hayReserva = true; 
+				
+			}
+		}
+		
+		for (int i = 0; i < darHabitaciones().size(); i++) 
+		{
+			if(darHabitaciones().get(i).getClientes() == null)
+			{
+				habitacionesDisp = true;
+				idHabitacion =  darHabitaciones().get(i).getId();
+			}
+		}
+		if(hayReserva && hayReserva && habitacionesDisp)
+		{
+			adicionarCliente(pazYSalvo, idHabitacion, tipoDocumento, numeroDocumento, nombre, correo);
+		}
+	}
 }
